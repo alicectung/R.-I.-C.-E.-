@@ -8,19 +8,12 @@ const webcamElement = document.getElementById('webcam');
 
 let net;
 
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+
 const LOCAL_STORAGE_KEY = 'mobilenet_classifiers';
 
-class Train extends Component {
-
-componentDidMount() {
-    this.app()
-}
-
-setupWebcam() {
-    const webcamElement = document.getElementById('webcam');
-    console.log('Setting up webcam...')
+const setupWebcam = () => {
+	const webcamElement = document.getElementById('webcam');
+	console.log('Setting up webcam...')
 	return new Promise((resolve, reject) => {
 		const navigatorAny = navigator;
 		navigator.getUserMedia = navigator.getUserMedia ||
@@ -40,12 +33,12 @@ setupWebcam() {
 }
 
 
-loadClassifiersFromLocalStorage() {
+const loadClassifiersFromLocalStorage = () => {
 	const data = window.localStorage.getItem(LOCAL_STORAGE_KEY);
 	return data ? JSON.parse(data) : [];
 }
 
-saveClassifierToLocalStorage(classifiers, imageDataUrl, classId) {
+const saveClassifierToLocalStorage = (classifiers, imageDataUrl, classId) => {
 	classifiers.push({
 		imageDataUrl,
 		classId
@@ -53,12 +46,23 @@ saveClassifierToLocalStorage(classifiers, imageDataUrl, classId) {
 	window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(classifiers));
 }
 
-clearLocalStorage() {
+const clearLocalStorage = () => {
 	window.localStorage.removeItem(LOCAL_STORAGE_KEY);
 	window.location.reload();
 }
 
+
+
+class Train extends Component {
+
+componentDidMount() {
+    this.app()
+}
+
+
 app = async () => {
+
+
 	console.log('Loading mobilenet..');
 
 	// Load the model.
@@ -86,6 +90,8 @@ app = async () => {
 	// Reads an image from the webcam and associates it with a specific class
 	// index.
 	const addExample = classId => {
+		const canvas = document.getElementById('myCanvas');
+		const ctx = canvas.getContext('2d');
 		// Get the intermediate activation of MobileNet 'conv_preds' and pass that
 		// to the KNN classifier.
 		// const activation = net.infer(webcamElement, 'conv_preds');
@@ -126,7 +132,21 @@ app = async () => {
 
     render() {
         return (
-          <div className="container">
+			<div>
+
+			
+			<div id="console"></div>
+			<video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+			<button id="class-a">Add A</button>
+			<button id="class-b">Add B</button>
+			<button id="class-c">Add C</button>
+			<button id="clear-data">Clear data</button>
+			<div>
+				<canvas id="myCanvas" width="224" height="224"></canvas>
+			</div>
+		
+
+          {/* <div className="container">
           <div className="row">
              
                   <div className="card col-sm-12">
@@ -153,9 +173,9 @@ app = async () => {
                   </div>
         
               </div>
-              </div>
+              </div> */}
   
-  
+			  </div>
        
         );
       }

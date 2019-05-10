@@ -12,7 +12,7 @@ class Intake extends Component {
         this.loadClassifiersFromLocalStorage()
       }
  
-  
+
     setupWebcam() {
         const webcamElement = document.getElementById('webcam');
         console.log('Setting up webcam...')
@@ -38,10 +38,10 @@ class Intake extends Component {
     loadClassifiersFromLocalStorage() {
       const LOCAL_STORAGE_KEY = 'mobilenet_classifiers';
       const data = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-      return data ? JSON.parse(data) : [];
+      return data ? JSON.parse(data) : [];   
     }
 
-
+  
     addExampleClassifier = async (dataUrl, classId) => {
       // Create an image tag to restore our image data URL on
       const imageTag = document.createElement('img');
@@ -64,19 +64,19 @@ class Intake extends Component {
 
       console.log('Loading mobilenet..');
 
-      // Load the models
+      // // Load the models
       const net = mobilenet.load();
       console.log('Sucessfully loaded model');
 
   
-      // Load existing classifiers from localstorage
+      // // Load existing classifiers from localstorage
       const classifier = knnClassifier.create();
 
         const storedClassifiers = this.loadClassifiersFromLocalStorage();
         storedClassifiers.forEach(async c => await this.addExampleClassifier(c.imageDataUrl, c.classId));
 
       // Run inference on captured image
-      const predictImage = async ()=> {
+      // const predictImage = async ()=> {
           console.log('Predicting...')
 
           if (classifier.getNumClasses() > 0) {
@@ -84,7 +84,7 @@ class Intake extends Component {
             const webcamElement = document.getElementById('webcam');
             const activation = net.infer(webcamElement, 'conv_preds');
             // Get the most likely class and confidences from the classifier module.
-            const result = await classifier.predictClass(activation);
+            const result = classifier.predictClass(activation);
          
             console.log(`Class: ', ${result.label}`)
           //   document.getElementById('console').innerText = `
@@ -92,15 +92,11 @@ class Intake extends Component {
           //   probability: ${result.confidences[result.label]}
           // `;
           }     
-        };
-        predictImage()
+        // };
+        // predictImage()
 
     }
-
-
-    
-
-
+  
 
     render() {
       return (
@@ -123,7 +119,7 @@ class Intake extends Component {
                             </ul>
                         </div>
                         <div className="card-read-more ">
-                            <a href="#" onClick={this.intakePredict} className="btn btn-link btn-block"> 
+                            <a href="" onClick={this.intakePredict} className="btn btn-link btn-block"> 
                                 Capture
                             </a>
           
