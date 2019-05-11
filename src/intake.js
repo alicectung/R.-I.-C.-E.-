@@ -5,10 +5,7 @@ import * as knnClassifier from '@tensorflow-models/knn-classifier';
 
 const classifier = knnClassifier.create();
 const webcamElement = document.getElementById('webcam');
-
 let net;
-
-
 const LOCAL_STORAGE_KEY = 'mobilenet_classifiers';
 
 const setupWebcam = () => {
@@ -32,43 +29,12 @@ const setupWebcam = () => {
 	});
 }
 
-
 const loadClassifiersFromLocalStorage = () => {
 	const data = window.localStorage.getItem(LOCAL_STORAGE_KEY);
 	return data ? JSON.parse(data) : [];
 }
 
-const saveClassifierToLocalStorage = (classifiers, imageDataUrl, classId) => {
-	classifiers.push({
-		imageDataUrl,
-		classId
-	});
-	window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(classifiers));
-}
 
-const clearLocalStorage = () => {
-	window.localStorage.removeItem(LOCAL_STORAGE_KEY);
-	window.location.reload();
-}
-const predictImage = async () => {
-  console.log('Predicting...')
-
-  if (classifier.getNumClasses() > 0) {
-    // Get the activation from mobilenet from the webcam.
-    const webcamElement = document.getElementById('webcam');
-    const activation = net.infer(webcamElement, 'conv_preds');
-    console.log('activation is: ', activation)
-    // Get the most likely class and confidences from the classifier module.
-    const result = await classifier.predictClass(activation);
-    console.log('result is: ', result)
-     console.log(`Class: ${result.label}
-                  Probability: ${result.confidences[result.label]}`)
-  //   document.getElementById('console').innerText = `
-  //   prediction: ${result.label}\n
-  //   probability: ${result.confidences[result.label]}
-  // `;
-  }     
-};
  
 class Intake extends Component {
 
@@ -81,6 +47,33 @@ class Intake extends Component {
   componentDidMount() {
     this.app()
 }
+
+
+predictImage = async () => {
+  console.log('Predicting...')
+
+  if (classifier.getNumClasses() > 0) {
+    // Get the activation from mobilenet from the webcam.
+    const webcamElement = document.getElementById('webcam');
+    const activation = net.infer(webcamElement, 'conv_preds');
+    console.log('activation is: ', activation)
+    // Get the most likely class and confidences from the classifier module.
+    const result = await classifier.predictClass(activation);
+    console.log('result is: ', result)
+     console.log(`Class: ${result.label}
+                  Probability: ${result.confidences[result.label]}`)
+  
+        this.setState({
+          total: this.state.total + 1
+      }, function () {
+          console.log('the state total is now: ', this.state.total);
+      });
+
+      this.props.action(this.state.total)
+
+  }     
+};
+
 
 app = async () => {
 
@@ -108,53 +101,7 @@ app = async () => {
 	// Load existing classifiers from localstorage
 	const storedClassifiers = loadClassifiersFromLocalStorage();
 	storedClassifiers.forEach( c => addExampleClassifier(c.imageDataUrl, c.classId));
-
-	// Reads an image from the webcam and associates it with a specific class
-	// index.
-	// const addExample = classId => {
-	// 	const canvas = document.getElementById('myCanvas');
-	// 	const ctx = canvas.getContext('2d');
-	// 	// Get the intermediate activation of MobileNet 'conv_preds' and pass that
-	// 	// to the KNN classifier.
-	// 	// const activation = net.infer(webcamElement, 'conv_preds');
-
-	// 	// Pass the intermediate activation to the classifier.
-	// 	// classifier.addExample(activation, classId);
-	// 	ctx.drawImage(webcamElement, 0, 0, canvas.width, canvas.height);
-	// 	const dataUrl = canvas.toDataURL();
-	// 	addExampleClassifier(dataUrl, classId);
-	// 	saveClassifierToLocalStorage(storedClassifiers, dataUrl, classId);
-	// };
-
-	// When clicking a button, add an example for that class.
-	// document.getElementById('class-a').addEventListener('click', () => addExample('A'));
-	// document.getElementById('class-b').addEventListener('click', () => addExample('B'));
-	// document.getElementById('class-c').addEventListener('click', () => addExample('C'));
-	document.getElementById('capture').addEventListener('click', () => predictImage());
-
-
-		// if (classifier.getNumClasses() > 0) {
-		// 	// Get the activation from mobilenet from the webcam.
-		// 	const activation = net.infer(webcamElement, 'conv_preds');
-		// 	// Get the most likely class and confidences from the classifier module.
-    //   const result = await classifier.predictClass(activation);
-      
-    //   console.log(`Class: , ${result.label}
-    //   probability: ${result.confidences[result.label]}`)
-
-		// 	document.getElementById('console').innerText = `
-		//   prediction: ${result.label}\n
-		//   probability: ${result.confidences[result.label]}
-		// `;
-		// }
-
-		// await tf.nextFrame();
-
 }
-
-
-
-
 
 
     render() {
@@ -178,18 +125,16 @@ app = async () => {
                             </ul>
                         </div>
                         <div className="card-read-more ">
-                            <a className="btn btn-link btn-block" id="capture"> 
+                            <button className="btn btn-link btn-block" id="capture" onClick={this.predictImage}> 
                                 Capture
-                            </a>
+                            </button>
           
                         </div>
                 </div>
       
             </div>
             </div>
-
-
-     
+  
       );
     }
   }

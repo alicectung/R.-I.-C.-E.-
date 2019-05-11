@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 
 class Report extends Component {
 
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {total: 0};
+    //   }
 
     render() {
       return (
@@ -29,7 +33,7 @@ class Report extends Component {
                                     <tr>
                                     <th scope="row">Damaged</th>
                                     <td>#</td>
-                                    <td>#</td>
+                                    <td>{this.props.total}</td>
                                     <td>%</td>
                                     </tr>
                                     <tr>
