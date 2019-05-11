@@ -65,9 +65,11 @@ async function app() {
 	};
 
 	// When clicking a button, add an example for that class.
-	document.getElementById('class-a').addEventListener('click', () => addExample('A'));
-	document.getElementById('class-b').addEventListener('click', () => addExample('B'));
-	document.getElementById('class-c').addEventListener('click', () => addExample('C'));
+	document.getElementById('class-a').addEventListener('click', () => addExample('Damaged'));
+	document.getElementById('class-b').addEventListener('click', () => addExample('Red'));
+	document.getElementById('class-c').addEventListener('click', () => addExample('Green'));
+	document.getElementById('class-d').addEventListener('click', () => addExample('Chalky'));
+	document.getElementById('class-e').addEventListener('click', () => addExample('Good'));
 	document.getElementById('clear-data').addEventListener('click', () => clearLocalStorage());
 
 	while (true) {

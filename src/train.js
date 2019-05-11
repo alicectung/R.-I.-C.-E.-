@@ -7,6 +7,7 @@ const classifier = knnClassifier.create();
 const webcamElement = document.getElementById('webcam');
 
 let net;
+const canvas = document.getElementById('myCanvas');
 
 
 const LOCAL_STORAGE_KEY = 'mobilenet_classifiers';
@@ -105,9 +106,11 @@ app = async () => {
 	};
 
 	// When clicking a button, add an example for that class.
-	document.getElementById('class-a').addEventListener('click', () => addExample('A'));
-	document.getElementById('class-b').addEventListener('click', () => addExample('B'));
-	document.getElementById('class-c').addEventListener('click', () => addExample('C'));
+	document.getElementById('class-damaged').addEventListener('click', () => addExample('D'));
+	document.getElementById('class-red').addEventListener('click', () => addExample('R'));
+	document.getElementById('class-green').addEventListener('click', () => addExample('G'));
+	document.getElementById('class-chalky').addEventListener('click', () => addExample('C'));
+	document.getElementById('class-good').addEventListener('click', () => addExample('O'));
 	document.getElementById('clear-data').addEventListener('click', () => clearLocalStorage());
 
 	while (true) {
@@ -127,56 +130,22 @@ app = async () => {
 }
 
 
-
-
-
     render() {
         return (
 			<div>
-
-			
-			<div id="console"></div>
-			<video autoplay playsinline muted id="webcam" width="224" height="224"></video>
-			<button id="class-a">Add A</button>
-			<button id="class-b">Add B</button>
-			<button id="class-c">Add C</button>
-			<button id="clear-data">Clear data</button>
-			<div>
-				<canvas id="myCanvas" width="224" height="224"></canvas>
+				<div id="console"></div>
+				<video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+				<button id="class-damaged">Add Damaged</button>
+				<button id="class-red">Add Red</button>
+				<button id="class-green">Add Green</button>
+				<button id="class-chalky">Add Chalky</button>
+				<button id="class-good">Add Good</button>
+				<button id="clear-data">Clear data</button>
+				<div>
+					<canvas id="myCanvas" width="224" height="224"></canvas>
+				</div>
 			</div>
-		
-
-          {/* <div className="container">
-          <div className="row">
-             
-                  <div className="card col-sm-12">
-                      
-                          <div className="card-content">
-                              <h4 className="card-title" >
-                                  <a> TRAIN
-                              </a>
-                              </h4>
-                        
-                              <video autoPlay playsInline muted id="webcam" className="center" width="224" height="224"></video>
-  
-                              <ul className="card-instruction" id="console">
-                                  <ul>1. Center rice grain in image frame</ul>
-                                  <ul>2. Click on "Capture" to analyze image</ul>
-                              </ul>
-                          </div>
-                          <div className="card-read-more ">
-                              <a href="#" onClick={this.intakePredict} className="btn btn-link btn-block"> 
-                                  Train
-                              </a>
-            
-                          </div>
-                  </div>
-        
-              </div>
-              </div> */}
-  
-			  </div>
-       
+ 
         );
       }
     }

@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
           <Switch>
 
-              <Route path="/" render={() => 
+              <Route exact path="/" render={() => 
 
                   <div className="container">
                     <div className="nav navbar-nav">
@@ -38,7 +38,7 @@ function App() {
                  
               }/>
 
-              <Route path="/train" render={() => <Train />} />
+              {/* <Route exact path="/training" render={() => <Train />} /> */}
 
           </Switch>
       </BrowserRouter>

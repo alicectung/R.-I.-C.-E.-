@@ -61,7 +61,7 @@ const predictImage = async () => {
     // Get the most likely class and confidences from the classifier module.
     const result = await classifier.predictClass(activation);
     console.log('result is: ', result)
-     console.log(`Class: , ${result.label}
+     console.log(`Class: ${result.label}
                   Probability: ${result.confidences[result.label]}`)
   //   document.getElementById('console').innerText = `
   //   prediction: ${result.label}\n
@@ -71,6 +71,12 @@ const predictImage = async () => {
 };
  
 class Intake extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {total: 0};
+  }
+  //this.setState({ total: this.state.count + 1 })
 
   componentDidMount() {
     this.app()

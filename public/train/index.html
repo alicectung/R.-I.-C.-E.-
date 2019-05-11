@@ -6,15 +6,22 @@
 	<script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
   </head>
   <body>
-    <div id="console"></div>
+    <!-- <div id="console"></div> -->
 	<video autoplay playsinline muted id="webcam" width="224" height="224"></video>
-	<button id="class-a">Add A</button>
-	<button id="class-b">Add B</button>
-	<button id="class-c">Add C</button>
-	<button id="clear-data">Clear data</button>
+	<button id="class-a">Add Damaged</button>
+	<button id="class-b">Add Red</button>
+	<button id="class-c">Add Green</button>
+	<button id="class-d">Add Chalky</button>
+	<button id="class-e">Add Good</button>
+	<hr>
 	<div>
 		<canvas id="myCanvas" width="224" height="224"></canvas>
 	</div>
+	<div id="console"></div>
+	
+	<hr>
+	<button id="clear-data">Clear data</button>
+	
     <!-- Load index.js after the content of the page -->
     <script src="index.js"></script>
   </body>
