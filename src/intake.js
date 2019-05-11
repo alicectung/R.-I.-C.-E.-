@@ -40,7 +40,10 @@ class Intake extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {total: 0};
+    this.state = {
+      total: 0,
+      red: 0
+    };
   }
   //this.setState({ total: this.state.count + 1 })
 
@@ -60,16 +63,29 @@ predictImage = async () => {
     // Get the most likely class and confidences from the classifier module.
     const result = await classifier.predictClass(activation);
     console.log('result is: ', result)
-     console.log(`Class: ${result.label}
-                  Probability: ${result.confidences[result.label]}`)
+    //  console.log(`Class: ${result.label}
+    //               Probability: ${result.confidences[result.label]}`)
+      console.log('result.label: ' + result.label)
+
+      const factor = result.label;
+      console.log('factor is... ', factor)
+
+      if (factor == 'Red') {
+        console.log('factor is red!')
+        this.setState({
+          red: this.state.red + 1
+        }, function () {
+            console.log('the red total is now: ', this.state.red)
+        });
+        this.props.redAction(this.state.red)
+      }
   
         this.setState({
-          total: this.state.total + 1
+          total: this.state.total + 1,
       }, function () {
-          console.log('the state total is now: ', this.state.total);
+          console.log('the state total is now: ', this.state.total); 
+          this.props.totalAction(this.state.total)
       });
-
-      this.props.action(this.state.total)
 
   }     
 };

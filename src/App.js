@@ -11,18 +11,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      total: 0
+      total: 0,
+      red: 0
     };
-    this.childHandler = this.childHandler.bind(this)
+    this.redHandler = this.redHandler.bind(this)
+    this.totalHandler = this.totalHandler.bind(this)
   }
 
-  childHandler(dataFromChild) {
+  redHandler(dataFromChild) {
     // log our state before and after we updated it
     console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
     this.setState({
-        total: dataFromChild
+        red: dataFromChild
     },() => console.log('Updated Parent State:', this.state));
 }
+  totalHandler(totalFromChild) {
+    // log our state before and after we updated it
+    console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+    this.setState({
+        total: totalFromChild
+    },() => console.log('Updated Parent State:', this.state));
+  }
 
   render() {
     return (
@@ -40,7 +49,9 @@ class App extends Component {
       
                     <div className="row">
                         <div className="col-sm-6">
-                          <Intake action={this.childHandler}/>
+                          <Intake 
+                            totalAction={this.totalHandler}
+                            redAction={this.redHandler}/>
                         </div>
                         <div className="col-sm-6">
                           <Report {...this.state}/>

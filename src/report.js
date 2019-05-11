@@ -38,7 +38,7 @@ class Report extends Component {
                                     </tr>
                                     <tr>
                                     <th scope="row">Red</th>
-                                    <td>#</td>
+                                    <td>{this.props.red}</td>
                                     <td>#</td>
                                     <td>%</td>
                                     </tr>
