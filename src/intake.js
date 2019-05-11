@@ -42,7 +42,10 @@ class Intake extends Component {
     super(props);
     this.state = {
       total: 0,
-      red: 0
+      damaged: 0,
+      red: 0,
+      green: 0,
+      chalky: 0
     };
   }
   //this.setState({ total: this.state.count + 1 })
@@ -59,17 +62,23 @@ predictImage = async () => {
     // Get the activation from mobilenet from the webcam.
     const webcamElement = document.getElementById('webcam');
     const activation = net.infer(webcamElement, 'conv_preds');
-    console.log('activation is: ', activation)
+      // console.log('activation is: ', activation)
     // Get the most likely class and confidences from the classifier module.
     const result = await classifier.predictClass(activation);
-    console.log('result is: ', result)
-    //  console.log(`Class: ${result.label}
-    //               Probability: ${result.confidences[result.label]}`)
-      console.log('result.label: ' + result.label)
+      console.log('result is: ', result)
 
       const factor = result.label;
-      console.log('factor is... ', factor)
+      console.log('factor is: ', factor)
 
+      if (factor == 'Damaged') {
+        console.log('factor is damaged!')
+        this.setState({
+          damaged: this.state.damaged + 1
+        }, function () {
+            console.log('the damaged total is now: ', this.state.damaged)
+        });
+        this.props.damagedAction(this.state.damaged)
+      }
       if (factor == 'Red') {
         console.log('factor is red!')
         this.setState({
@@ -78,6 +87,24 @@ predictImage = async () => {
             console.log('the red total is now: ', this.state.red)
         });
         this.props.redAction(this.state.red)
+      }
+      if (factor == 'Green') {
+        console.log('factor is green!')
+        this.setState({
+          green: this.state.green + 1
+        }, function () {
+            console.log('the green total is now: ', this.state.green)
+        });
+        this.props.greenAction(this.state.green)
+      }
+      if (factor == 'Chalky') {
+        console.log('factor is chalky!')
+        this.setState({
+          chalky: this.state.chalky + 1
+        }, function () {
+            console.log('the chalky total is now: ', this.state.chalky)
+        });
+        this.props.chalkyAction(this.state.chalky)
       }
   
         this.setState({

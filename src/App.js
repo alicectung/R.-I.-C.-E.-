@@ -12,19 +12,46 @@ class App extends Component {
     super(props);
     this.state = {
       total: 0,
-      red: 0
+      damaged: 0,
+      red: 0,
+      green: 0,
+      chalky: 0
     };
+    this.damagedHandler = this.damagedHandler.bind(this)
     this.redHandler = this.redHandler.bind(this)
+    this.greenHandler = this.greenHandler.bind(this)
+    this.chalkyHandler = this.chalkyHandler.bind(this)
     this.totalHandler = this.totalHandler.bind(this)
   }
 
+  damagedHandler(damagedFromChild) {
+    // log our state before and after we updated it
+    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+    this.setState({
+        damaged: damagedFromChild
+    },() => console.log('Updated Parent State:', this.state));
+  }
   redHandler(dataFromChild) {
     // log our state before and after we updated it
-    console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
     this.setState({
         red: dataFromChild
     },() => console.log('Updated Parent State:', this.state));
-}
+  }
+  greenHandler(greenFromChild) {
+    // log our state before and after we updated it
+    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+    this.setState({
+        green: greenFromChild
+    },() => console.log('Updated Parent State:', this.state));
+  }
+  chalkyHandler(chalkyFromChild) {
+    // log our state before and after we updated it
+    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+    this.setState({
+        chalky: chalkyFromChild
+    },() => console.log('Updated Parent State:', this.state));
+  }
   totalHandler(totalFromChild) {
     // log our state before and after we updated it
     console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
@@ -51,7 +78,11 @@ class App extends Component {
                         <div className="col-sm-6">
                           <Intake 
                             totalAction={this.totalHandler}
-                            redAction={this.redHandler}/>
+                            damagedAction={this.damagedHandler}
+                            redAction={this.redHandler}
+                            greenAction={this.greenHandler}
+                            chalkyAction={this.chalkyHandler}
+                          />
                         </div>
                         <div className="col-sm-6">
                           <Report {...this.state}/>

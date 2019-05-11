@@ -32,26 +32,26 @@ class Report extends Component {
                                 <tbody>
                                     <tr>
                                     <th scope="row">Damaged</th>
-                                    <td>#</td>
+                                    <td>{this.props.damaged}</td>
                                     <td>{this.props.total}</td>
                                     <td>%</td>
                                     </tr>
                                     <tr>
                                     <th scope="row">Red</th>
                                     <td>{this.props.red}</td>
-                                    <td>#</td>
+                                    <td>{this.props.total}</td>
                                     <td>%</td>
                                     </tr>
                                     <tr>
                                     <th scope="row">Green</th>
-                                    <td>#</td>
-                                    <td>#</td>
+                                    <td>{this.props.green}</td>
+                                    <td>{this.props.total}</td>
                                     <td>%</td>
                                     </tr>
                                     <tr>
                                     <th scope="row">Chalky</th>
-                                    <td>#</td>
-                                    <td>#</td>
+                                    <td>{this.props.chalky}</td>
+                                    <td>{this.props.total}</td>
                                     <td>%</td>
                                 
                                     </tr>
