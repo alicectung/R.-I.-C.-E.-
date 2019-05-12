@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Intake from './intake';
+import Analysis from './analysis';
 import Report from './report';
-import Train from './train';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './rice_logo';
 
@@ -97,7 +98,7 @@ class App extends Component {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <Report {...this.state}/>
+                          <Analysis {...this.state}/>
                         </div>
                     </div>
 
@@ -106,7 +107,22 @@ class App extends Component {
              
           }/>
 
-          {/* <Route exact path="/training" render={() => <Train />} /> */}
+          <Route exact path="/report" render={() => 
+              
+              <div className="container">
+                <div className="nav navbar-nav">
+
+                    <div className="logo">
+                      <img className="logo-navbar-middle" src={Logo} width={200} alt="RICE logo" />
+                    </div>
+
+                    {/* <div className="col-sm-10"> */}
+                    <Report />
+                    {/* </div> */}
+
+                </div>
+              </div>
+          }/>
 
       </Switch>
   </BrowserRouter>
