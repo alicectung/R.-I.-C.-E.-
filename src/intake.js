@@ -67,6 +67,14 @@ predictImage = async () => {
     const result = await classifier.predictClass(activation);
       console.log('result is: ', result)
 
+      this.setState({
+        total: this.state.total + 1,
+    }, function () {
+        console.log('the state total is now: ', this.state.total); 
+        this.props.totalAction(this.state.total)
+    });
+
+
       const factor = result.label;
       console.log('factor is: ', factor)
 
@@ -106,13 +114,6 @@ predictImage = async () => {
         });
         this.props.chalkyAction(this.state.chalky)
       }
-  
-        this.setState({
-          total: this.state.total + 1,
-      }, function () {
-          console.log('the state total is now: ', this.state.total); 
-          this.props.totalAction(this.state.total)
-      });
 
   }     
 };
@@ -169,7 +170,7 @@ app = async () => {
                         </div>
                         <div className="card-read-more ">
                             <button className="btn btn-link btn-block" id="capture" onClick={this.predictImage}> 
-                                Capture
+                                <strong>Capture</strong>
                             </button>
           
                         </div>

@@ -13,52 +13,64 @@ class App extends Component {
     this.state = {
       total: 0,
       damaged: 0,
+      damagedPercentage: 0,
       red: 0,
+      redPercentage: 0,
       green: 0,
-      chalky: 0
+      greenPercentage: 0,
+      chalky: 0,
+      chalkyPercentage: 0
     };
+    
     this.damagedHandler = this.damagedHandler.bind(this)
     this.redHandler = this.redHandler.bind(this)
     this.greenHandler = this.greenHandler.bind(this)
     this.chalkyHandler = this.chalkyHandler.bind(this)
     this.totalHandler = this.totalHandler.bind(this)
+    
   }
 
+
   damagedHandler(damagedFromChild) {
-    // log our state before and after we updated it
-    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+
     this.setState({
-        damaged: damagedFromChild
+        damaged: damagedFromChild,
+        damagedPercentage: ((damagedFromChild/this.state.total).toFixed(3))*100
     },() => console.log('Updated Parent State:', this.state));
   }
-  redHandler(dataFromChild) {
-    // log our state before and after we updated it
-    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+  redHandler(redFromChild) {
+ 
     this.setState({
-        red: dataFromChild
+        red: redFromChild,
+        redPercentage: ((redFromChild/this.state.total).toFixed(3))*100
     },() => console.log('Updated Parent State:', this.state));
   }
   greenHandler(greenFromChild) {
-    // log our state before and after we updated it
-    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+
     this.setState({
-        green: greenFromChild
+        green: greenFromChild,
+        greenPercentage: ((greenFromChild/this.state.total).toFixed(3))*100
     },() => console.log('Updated Parent State:', this.state));
   }
   chalkyHandler(chalkyFromChild) {
-    // log our state before and after we updated it
-    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+
     this.setState({
-        chalky: chalkyFromChild
+        chalky: chalkyFromChild,
+        chalkyPercentage: ((chalkyFromChild/this.state.total).toFixed(3))*100
     },() => console.log('Updated Parent State:', this.state));
   }
-  totalHandler(totalFromChild) {
-    // log our state before and after we updated it
-    console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
+  totalHandler(totalFromChild){
+  
     this.setState({
-        total: totalFromChild
-    },() => console.log('Updated Parent State:', this.state));
+        total: totalFromChild,
+        damagedPercentage: ((this.state.damaged/this.state.total).toFixed(3))*100,
+        redPercentage: ((this.state.red/this.state.total).toFixed(3))*100,
+        greenPercentage: ((this.state.green/this.state.total).toFixed(3))*100,
+        chalkyPercentage: ((this.state.chalky/this.state.total).toFixed(3))*100
+    },() => console.log('Updated Parent State:', this.state),      
+    );
   }
+
 
   render() {
     return (
@@ -70,7 +82,7 @@ class App extends Component {
               <div className="container">
                 <div className="nav navbar-nav">
 
-                    <div>
+                    <div className="logo">
                       <img className="logo-navbar-middle" src={Logo} width={200} alt="RICE logo" />
                     </div>
       
