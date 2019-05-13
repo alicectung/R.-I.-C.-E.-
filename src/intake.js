@@ -42,13 +42,14 @@ class Intake extends Component {
     super(props);
     this.state = {
       total: 0,
+      good: 0,
       damaged: 0,
       red: 0,
       green: 0,
       chalky: 0
     };
   }
-  //this.setState({ total: this.state.count + 1 })
+
 
   componentDidMount() {
     this.app()
@@ -78,6 +79,16 @@ predictImage = async () => {
       const factor = result.label;
       console.log('factor is: ', factor)
 
+      if (factor == 'Good') {
+        console.log('factor is good!')
+        this.setState({
+          good: this.state.good + 1
+        }, function () {
+            console.log('the good total is now: ', this.state.good)
+        });
+        this.props.totalAction()
+      }
+
       if (factor == 'Damaged') {
         console.log('factor is damaged!')
         this.setState({
@@ -86,6 +97,7 @@ predictImage = async () => {
             console.log('the damaged total is now: ', this.state.damaged)
         });
         this.props.damagedAction(this.state.damaged)
+        this.props.totalAction(this.state.total)
       }
       if (factor == 'Red') {
         console.log('factor is red!')
@@ -95,6 +107,7 @@ predictImage = async () => {
             console.log('the red total is now: ', this.state.red)
         });
         this.props.redAction(this.state.red)
+        this.props.totalAction(this.state.total)
       }
       if (factor == 'Green') {
         console.log('factor is green!')
@@ -104,6 +117,7 @@ predictImage = async () => {
             console.log('the green total is now: ', this.state.green)
         });
         this.props.greenAction(this.state.green)
+        this.props.totalAction(this.state.total)
       }
       if (factor == 'Chalky') {
         console.log('factor is chalky!')
@@ -113,6 +127,7 @@ predictImage = async () => {
             console.log('the chalky total is now: ', this.state.chalky)
         });
         this.props.chalkyAction(this.state.chalky)
+        this.props.totalAction(this.state.total)
       }
 
   }     
