@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Intake from './intake';
 import Analysis from './analysis';
 import Report from './report';
-import Example from './analysis';
+import Example from './report';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './rice_logo';
@@ -37,38 +37,38 @@ class App extends Component {
 
     this.setState({
         damaged: damagedFromChild,
-        damagedPercentage: ((damagedFromChild/this.state.total).toFixed(3))*100
+        damagedPercentage: ((damagedFromChild/this.state.total)*100).toFixed(1)
     },() => console.log('Updated Parent State:', this.state));
   }
   redHandler(redFromChild) {
  
     this.setState({
         red: redFromChild,
-        redPercentage: ((redFromChild/this.state.total).toFixed(3))*100
+        redPercentage: ((redFromChild/this.state.total)*100).toFixed(1)
     },() => console.log('Updated Parent State:', this.state));
   }
   greenHandler(greenFromChild) {
 
     this.setState({
         green: greenFromChild,
-        greenPercentage: ((greenFromChild/this.state.total).toFixed(3))*100
+        greenPercentage: ((greenFromChild/this.state.total)*100).toFixed(1)
     },() => console.log('Updated Parent State:', this.state));
   }
   chalkyHandler(chalkyFromChild) {
 
     this.setState({
         chalky: chalkyFromChild,
-        chalkyPercentage: ((chalkyFromChild/this.state.total).toFixed(3))*100
+        chalkyPercentage: ((chalkyFromChild/this.state.total)*100).toFixed(1)
     },() => console.log('Updated Parent State:', this.state));
   }
   totalHandler(totalFromChild){
   
     this.setState({
         total: totalFromChild,
-        damagedPercentage: ((this.state.damaged/this.state.total).toFixed(3))*100,
-        redPercentage: ((this.state.red/this.state.total).toFixed(3))*100,
-        greenPercentage: ((this.state.green/this.state.total).toFixed(3))*100,
-        chalkyPercentage: ((this.state.chalky/this.state.total).toFixed(3))*100
+        damagedPercentage: ((this.state.damaged/this.state.total)*100).toFixed(1),
+        redPercentage: ((this.state.red/this.state.total)*100).toFixed(1),
+        greenPercentage: ((this.state.green/this.state.total)*100).toFixed(1),
+        chalkyPercentage: ((this.state.chalky/this.state.total)*100).toFixed(1)
     },() => console.log('Updated Parent State:', this.state),      
     );
   }
@@ -99,7 +99,7 @@ class App extends Component {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <Example {...this.state}/>
+                          <Analysis {...this.state}/>
                         </div>
                     </div>
                     <footer className="footer">rice image classification evaluator</footer>
