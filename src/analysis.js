@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import ReactToPrint from 'react-to-print';
-
+import { withRouter } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class Analysis extends Component {
 
+
+  createReport = () => {
+    console.log('Creating report...')
+    console.log("this.props: ", this.props)
+
+    localStorage.setItem('report', JSON.stringify(this.props));
+
+    // this.state.history.push(...this.state);
+  }
 
     render() {
       return (
@@ -72,9 +82,9 @@ class Analysis extends Component {
                             </form>
 
                             <div className="card-read-more" >
-                            <a href="" className="btn btn-link btn-block">
-                                Print
-                            </a>
+                            <Link onClick={this.createReport} to="/report" className="btn btn-link btn-block">
+                                Finish
+                            </Link>
                     </div>
                 </div>
             </div>

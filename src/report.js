@@ -13,7 +13,7 @@ class Report extends Component {
                     
                         <div className="card-content">
                             <h4 className="card-title" >
-                                <a> ANALYSIS</a>
+                                <a> REPORT</a>
                             </h4>
 
                             <table className="table table-sm">
@@ -84,18 +84,19 @@ class Report extends Component {
     }
 }
 
-class Example extends React.Component {
-    render() {
-      return (
-        <div>
-          <ReactToPrint
-            trigger={() => <a href="#">Print this out!</a>}
-            content={() => this.componentRef}
-          />
-          <Report ref={el => (this.componentRef = el)} />
-        </div>
-      );
-    }
-  }
+// class Example extends React.Component {
+//     render() {
+//       return (
+//         <div>
+//           <Report ref={el => (this.componentRef = el)} />
+//           <ReactToPrint
+//             trigger={() => <a href="#">Print this out!</a>}
+//             content={() => this.componentRef}
+//           />
+          
+//         </div>
+//       );
+//     }
+//   }
   
-export default Example;
+export default Report;

@@ -6,8 +6,18 @@
 	<script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
   </head>
   <body>
-    <!-- <div id="console"></div> -->
-	<video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+		<div id="instructions">
+			<ul style="list-style: none;">
+				<li>TRAINING MODE</li><br>
+				<li>Instructions:</li>
+					<li>1. Center rice grain in video frame</li>
+					<li>2. Click on the category to assign to this image</li>
+					<li>3. "Clear data" will delete all training data </li>
+			</ul>
+	
+		</div>
+		
+	<video autoplay playsinline muted id="webcam" width="224" height="224" class='center'></video>
 	<button id="class-a">Add Damaged</button>
 	<button id="class-b">Add Red</button>
 	<button id="class-c">Add Green</button>
