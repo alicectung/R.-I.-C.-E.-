@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ReactToPrint from 'react-to-print';
 
 class Report extends Component {
 
@@ -83,5 +83,19 @@ class Report extends Component {
       );
     }
 }
+
+class Example extends React.Component {
+    render() {
+      return (
+        <div>
+          <ReactToPrint
+            trigger={() => <a href="#">Print this out!</a>}
+            content={() => this.componentRef}
+          />
+          <Report ref={el => (this.componentRef = el)} />
+        </div>
+      );
+    }
+  }
   
-export default Report;
+export default Example;

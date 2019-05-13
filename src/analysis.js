@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactToPrint from 'react-to-print';
 
 
 class Analysis extends Component {
@@ -70,10 +71,10 @@ class Analysis extends Component {
                                 </div>
                             </form>
 
-                    <div className="card-read-more" >
-                        <a href="" className="btn btn-link btn-block">
-                            Print
-                        </a>
+                            <div className="card-read-more" >
+                            <a href="" className="btn btn-link btn-block">
+                                Print
+                            </a>
                     </div>
                 </div>
             </div>
@@ -83,5 +84,20 @@ class Analysis extends Component {
       );
     }
 }
+
+class Example extends React.Component {
+    render() {
+      return (
+        <div>
+            <Analysis ref={el => (this.componentRef = el)} />
+          <ReactToPrint
+            trigger={() => <a href="#" className="btn btn-link btn-print"><strong>Print this out!</strong></a>}
+            content={() => this.componentRef}
+          />
+          
+        </div>
+      );
+    }
+  }
   
-export default Analysis;
+export default Example;

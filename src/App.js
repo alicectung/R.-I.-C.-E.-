@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Intake from './intake';
 import Analysis from './analysis';
 import Report from './report';
+import Example from './analysis';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './rice_logo';
@@ -84,7 +85,7 @@ class App extends Component {
                 <div className="nav navbar-nav">
 
                     <div className="logo">
-                      <img className="logo-navbar-middle" src={Logo} width={200} alt="RICE logo" />
+                      <a href=""><img className="logo-navbar-middle" src={Logo} width={200} alt="RICE logo" /></a>
                     </div>
       
                     <div className="row">
@@ -98,10 +99,10 @@ class App extends Component {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <Analysis {...this.state}/>
+                          <Example {...this.state}/>
                         </div>
                     </div>
-
+                    <footer className="footer">rice image classification evaluator</footer>
                 </div>
               </div>
              
@@ -117,7 +118,7 @@ class App extends Component {
                     </div>
 
                     {/* <div className="col-sm-10"> */}
-                    <Report />
+                    <Example />
                     {/* </div> */}
 
                 </div>
