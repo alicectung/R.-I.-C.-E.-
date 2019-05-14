@@ -6,14 +6,36 @@ import {Link} from "react-router-dom";
 class Analysis extends Component {
 
 
-  createReport = () => {
-    console.log('Creating report...')
-    console.log("this.props: ", this.props)
+  constructor(props) {
+    super(props);
+    this.state = {
+      evaluatedBy: '',
+      grade: ''
+      }
+    };
 
-    localStorage.setItem('report', JSON.stringify(this.props));
+      onInputChange = (event) => {
+        this.setState({ evaluatedBy: event.target.value });
+        
+      }
 
-    // this.state.history.push(...this.state);
-  }
+      gradeSelect = (event) => {
+        console.log('changing selected..')
+        this.setState({ grade: event.target.value });
+        console.log("this.state.grade: ", this.state.grade)
+      }
+
+
+
+
+      createReport = () => {
+        console.log('Creating report...')
+
+        console.log("this.props: ", this.props)
+
+        localStorage.setItem('report', JSON.stringify(this.props));
+        localStorage.setItem('evaluatedBy', JSON.stringify(this.state));
+      }
 
     render() {
       return (
@@ -67,17 +89,21 @@ class Analysis extends Component {
  
                             <div className="form-group">
                                 Select Grade
-                                <select className="form-control">
-                                <option>Extra A</option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>Sample</option>
+                                <select className="form-control" onChange={this.gradeSelect}>
+                                  <option value="Extra-A" onChange={this.gradeSelect}>Extra A</option>
+                                  <option value="A" onChange={this.gradeSelect}>A</option>
+                                  <option value="B" onChange={this.gradeSelect}>B</option>
+                                  <option value="C" onChange={this.gradeSelect}>C</option>
+                                  <option value="Sample" onChange={this.gradeSelect}>Sample</option>
                                 </select>
                             </div>
                             <form>
                                 <div className="form-group input-sm">
-                                <input className="form-control input-sm" id="inputsm" type="text" placeholder="Evaluated By"/>
+                                <input className="form-control input-sm" 
+                                      id="inputsm" type="text" placeholder="Evaluated By" 
+                                      value={this.state.evaluatedBy}
+                                      onChange={this.onInputChange}
+                                      onClick={this.createReport}/>
                                 </div>
                             </form>
 

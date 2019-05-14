@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
 import ReactToPrint from 'react-to-print';
 
+const retrieveLocalStorage = async () => {
+  let object = await JSON.parse(localStorage.getItem('evaluatedBy'));
+  return object
+}
+
+let object = JSON.parse(localStorage.getItem('evaluatedBy'));
+
 class Report extends Component {
+
+  componentDidMount() {
+    retrieveLocalStorage();
+  }
+
+  constructor(props) {
+    super(props);
+      this.state = {
+          evaluatedBy: object.evaluatedBy,
+          grade: object.grade
+      };
+  }
+
+  
+
 
 
     render() {
@@ -53,28 +75,21 @@ class Report extends Component {
                                     </tr>
                                 </tbody>
                             </table>
- 
-                            <div className="form-group">
-                                Select Grade
-                                <select className="form-control">
-                                <option>Extra A</option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>Sample</option>
-                                </select>
+                              <br></br>
+                            <div className="grade">
+                               <h4>Grade: {this.state.grade}</h4>
                             </div>
-                            <form>
-                                <div className="form-group input-sm">
-                                <input className="form-control input-sm" id="inputsm" type="text" placeholder="Evaluated By"/>
+                                  <br></br>
+                                <div className="grade">
+                                <h4>Evaluated By: {this.state.evaluatedBy}</h4>
                                 </div>
-                            </form>
+                        
 
-                    <div className="card-read-more" >
-                        <a href="" className="btn btn-link btn-block">
-                            Print
-                        </a>
-                    </div>
+                                <div className="card-read-more" >
+                                    <a href="" className="btn btn-link btn-block">
+                                        Print
+                                    </a>
+                                </div>
                 </div>
             </div>
 

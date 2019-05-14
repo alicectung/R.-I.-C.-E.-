@@ -30,8 +30,6 @@ class App extends Component {
     this.greenHandler = this.greenHandler.bind(this)
     this.chalkyHandler = this.chalkyHandler.bind(this)
     this.totalHandler = this.totalHandler.bind(this)
-
-    // this.createReport = this.createReport.bind(this)
     
   }
 
@@ -103,7 +101,7 @@ class App extends Component {
                         </div>
                         <div className="col-sm-6">
                           <Analysis {...this.state}/>
-                          <Report {...this.state}/>
+                   
                         </div>
                     </div>
                     <footer className="footer">rice image classification evaluator</footer>
@@ -121,7 +119,9 @@ class App extends Component {
                     <a href="/"><img className="logo-navbar-middle" src={Logo} width={200} alt="RICE logo" /></a>
                     </div>
               
-                    <Report {...this.state}/>
+                    <Report {...this.state}
+                      evaluatedBy={this.props.evaluatedBy}
+                    />
 
                 </div>
               </div>

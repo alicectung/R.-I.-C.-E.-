@@ -147,6 +147,12 @@ h1.heading {
   text-transform: uppercase;
 }
 
+.grade {
+  text-decoration: none !important;
+  font-weight:150;
+  text-transform: uppercase;
+  color: #505050;
+}
 /* .p-2 {
     width: 100px !important;
     height: 60px !important;
