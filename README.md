@@ -14,22 +14,22 @@ Technologies Used: TensorFlow.js, MobileNet, React, Bootstrap
 
 // USER PROFILES //
 
-Rice Miller/Manager
+Rice Miller/Manager: 
 Periodically monitors progress of paddy intake at own mill. Wants to know about overall 
 paddy quality from all farmers for that crop season.
 Usage: Medium
 
-Rice Grader
+Rice Grader:
 Works around the clock during intake season. Determines the grade for each sample 
 per trailer load. Reports paddy sample grade to Manager for payment calculations.
 Usage: Heavy
 
-Rice Board Member
+Rice Board Member: 
 Employed by the local government to create, update and enforce standards for the 
 national rice industry. May work in a lab setting.
 Usage: Light
 
-Agricultural School Faculty / Student
+Agricultural School Faculty / Student: 
 Involved in the education of agricultural practices. May work in a lab setting.
 Usage: Light
 
