@@ -1,11 +1,15 @@
+
 Rice Image Classification Evaluator (R.I.C.E.) analyzes rice grain images to determine the
 quality per crop. 
+
 
 Certified graders manually examine numerious samples under a tight
 harvesting schedule. By augmenting a pre-trained machine learning model using image classification, we
 can expedite this labor intensive human process. 
 
-Technologies: TensorFlow.js, MobileNet, React, Bootstrap
+
+Technologies Used: TensorFlow.js, MobileNet, React, Bootstrap
+
 
 
 // USER PROFILES //
