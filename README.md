@@ -36,8 +36,8 @@ Usage: Light
 
 // ADDITIONAL FUNCTIONALITIES //
 
-Create user account – with existing Facebook account or sign­up
-Login – private user session to create and review grading records
-Image analyzer – object detection using webcam
-Location marker – user self­identify on a map
+Create user account – with existing Facebook account or sign­up; 
+Login – private user session to create and review grading records; 
+Image analyzer – object detection using webcam; 
+Location marker – user self­identify on a map; 
 Grading reports – privatized; optional open reporting
